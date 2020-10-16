@@ -1,0 +1,59 @@
+header{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.week{
+    display: flex;
+    
+}
+
+.day{
+    height: 250px;
+    width: 250px;
+    margin: 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    border: 1px solid black;
+    text-align: left;
+  }
+
+  th{
+    background-color: darkgray;  
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  td, th {
+    border: 1px solid black;
+    height: 20px;
+   }
+
+
+.button{
+    height: 100px;
+    width: 200px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    box-shadow: 5px 10px #dddddd;
+}
+
+.button-Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
