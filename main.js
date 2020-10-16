@@ -1,7 +1,5 @@
-var header = document.querySelector("#scheduled-day");
-
-var days = document.querySelectorAll(".day").forEach(day =>{
-    day.addEventListener('click', function(){
-        header.innerText = "Scheduled Events for " + day.innerHTML;
-    })
+var scheduledDay = document.querySelector("#scheduled-day");
+var week = document.querySelector(".week");
+week.addEventListener('click', function(event){
+    scheduledDay.innerHTML = "Scheduled Events for " + event.target.innerHTML;
 })
