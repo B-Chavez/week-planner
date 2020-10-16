@@ -37,4 +37,23 @@ table {
 
   td, th {
     border: 1px solid black;
+    height: 20px;
    }
+
+
+.button{
+    height: 100px;
+    width: 200px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    box-shadow: 5px 10px #dddddd;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
