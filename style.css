@@ -21,6 +21,11 @@ header{
     border: 1px solid black;
 }
 
+.day:hover{
+    background-color: #dddddd;
+    cursor: pointer;
+}
+
 table {
     width: 100%;
     border: 1px solid black;
@@ -57,3 +62,4 @@ table {
     align-items: center;
     margin: 20px 0;
 }
+
