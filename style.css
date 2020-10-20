@@ -79,13 +79,13 @@ table {
     flex-direction: column;
     justify-content: space-evenly;
 }
-    .containerEntry{
-        display: flex;
-        justify-content: space-evenly;
-    }
-    #entry{
-        margin: 10px;
-    }
+.containerEntry{
+    display: flex;
+    justify-content: space-evenly;
+}
+#entry{
+    margin: 10px;
+}
 
 .transparentBG{
     height: 100%;
