@@ -9,7 +9,11 @@ function changeDay(event){
     if(event.target.className !== "week"){
         scheduledDay.innerHTML = "Scheduled Events for " + event.target.textContent;
     }
-    
+
+    var dayToLowerCase = event.target.innerHTML.toLowerCase()
+
+    console.log(dayToLowerCase)
+    applyDataModelToDOM(dayToLowerCase)
 }
 
 var button = document.querySelector("button");
@@ -17,7 +21,7 @@ button.addEventListener('click', displayModal);
 var submit = document.querySelector("#submit");
 submit.addEventListener('click', function (){
     displayModal()
-    submitFunc()
+    myFormData()
 })
 
 var showModal = false;
@@ -42,46 +46,18 @@ var time = document.querySelectorAll(".time");
 var dayOption = document.querySelector("#day");
 var timeOption = document.querySelector("#time")
 
-function submitFunc(){
-    
-
-    if(submitText.value === "" || dayOption.selectedIndex === 0 || timeOption.selectedIndex === 0){
+function myFormData(){
+  var daySelected = dayOption.value;
+  console.log(day)
+  var timeSelected = timeOption.selectedOptions[0].innerHTML;
+  var desc = submitText.value;
+    if(desc === "" || day === 0 || time === 0){
         resetEntry()
         return;
     }
-
-        
-    if(dayOption[dayOption.selectedIndex].innerHTML === "Sunday"){
-        if(entries[0].description1 === ""){
-            entries[0].description1 = submitText.value;
-            description[0].textContent = entries[0].description1;
-            entries[0].day1 = dayOption[dayOption.selectedIndex].innerHTML;
-            entries[0].time1 = timeOption[timeOption.selectedIndex].innerHTML;
-            time[0].textContent = entries[0].day1 + " " + entries[0].time1;
-        } else if(entries[0].description1 !== ""){
-            entries[0].description2 = submitText.value;
-            description[0].textContent = entries[0].description1;
-            entries[0].day2 = dayOption[dayOption.selectedIndex].innerHTML;
-            entries[0].time2 = timeOption[timeOption.selectedIndex].innerHTML;
-            time[1].textContent = entries[0].day2 + " " + entries[0].time2;
-        } else if(entries[0].description2 !== ""){
-            entries[0].description2 = submitText.value;
-            description[0].textContent = entries[0].description1;
-            entries[0].day2 = dayOption[dayOption.selectedIndex].innerHTML;
-            entries[0].time2 = timeOption[timeOption.selectedIndex].innerHTML;
-            time[1].textContent = entries[0].day2 + " " + entries[0].time2;
-        }
-        
-
-    } else if(dayOption[dayOption.selectedIndex].innerHTML === "Monday"){
-        
-    }
-
-    resetEntry()
-    descCount++;
-    if(descCount === 6){
-        descCount = 0;
-    }
+    
+    addEntryToDataModel(daySelected, timeSelected, desc)
+    applyDataModelToDOM(daySelected)
 }
 
 
@@ -108,151 +84,41 @@ function makeRows(){
     }
 }
 
-//Data Model
+function addEntryToDataModel(dayEntry, timeEntry, descEntry){
+    var entry = {
+        day: dayEntry,
+        time: timeEntry,
+        description: descEntry
+    }
+    console.log(entry)
+    console.log(dayEntry)
+    entries[dayEntry].push(entry)
+    
+}
 
-var entries = [{
-    entry:"sunday",
-    day1:"",
-    time1:"0:00",
-    description1:"",
-    day2:"",
-    time2:"0:00",
-    description2:"",
-    day3:"",
-    time3:"0:00",
-    description3:"",
-    day4:"",
-    time4:"0:00",
-    description4:"",
-    day5:"",
-    time5:"0:00",
-    description5:"",
-    day6:"",
-    time6:"0:00",
-    description6:""
-}, {
-    entry:"monday",
-    day1:"",
-    time1:"0:00",
-    description1:"",
-    day2:"",
-    time2:"0:00",
-    description2:"",
-    day3:"",
-    time3:"0:00",
-    description3:"",
-    day4:"",
-    time4:"0:00",
-    description4:"",
-    day5:"",
-    time5:"0:00",
-    description5:"",
-    day6:"",
-    time6:"0:00",
-    description6:""
-},
-{
-    entry:"tuesday",
-    day1:"",
-    time1:"0:00",
-    description1:"",
-    day2:"",
-    time2:"0:00",
-    description2:"",
-    day3:"",
-    time3:"0:00",
-    description3:"",
-    day4:"",
-    time4:"0:00",
-    description4:"",
-    day5:"",
-    time5:"0:00",
-    description5:"",
-    day6:"",
-    time6:"0:00",
-    description6:""
-},
-{
-    entry:"wednesday",
-    day1:"",
-    time1:"0:00",
-    description1:"",
-    day2:"",
-    time2:"0:00",
-    description2:"",
-    day3:"",
-    time3:"0:00",
-    description3:"",
-    day4:"",
-    time4:"0:00",
-    description4:"",
-    day5:"",
-    time5:"0:00",
-    description5:"",
-    day6:"",
-    time6:"0:00",
-    description6:""
-},
-{
-    entry:"thursday",
-    day1:"",
-    time1:"0:00",
-    description1:"",
-    day2:"",
-    time2:"0:00",
-    description2:"",
-    day3:"",
-    time3:"0:00",
-    description3:"",
-    day4:"",
-    time4:"0:00",
-    description4:"",
-    day5:"",
-    time5:"0:00",
-    description5:"",
-    day6:"",
-    time6:"0:00",
-    description6:""
-},
-{
-    entry:"friday",
-    day1:"",
-    time1:"0:00",
-    description1:"",
-    day2:"",
-    time2:"0:00",
-    description2:"",
-    day3:"",
-    time3:"0:00",
-    description3:"",
-    day4:"",
-    time4:"0:00",
-    description4:"",
-    day5:"",
-    time5:"0:00",
-    description5:"",
-    day6:"",
-    time6:"0:00",
-    description6:""
-},
-{
-    entry:"saturday",
-    day1:"",
-    time1:"0:00",
-    description1:"",
-    day2:"",
-    time2:"0:00",
-    description2:"",
-    day3:"",
-    time3:"0:00",
-    description3:"",
-    day4:"",
-    time4:"0:00",
-    description4:"",
-    day5:"",
-    time5:"0:00",
-    description5:"",
-    day6:"",
-    time6:"0:00",
-    description6:""
-}]
+function applyDataModelToDOM(day){
+        var eventsArray = entries[day];
+        console.log(eventsArray)
+        for(var i = 0; i < eventsArray.length; i++){
+            time[i].innerHTML = eventsArray[i]['day'] + " " + eventsArray[i]['time']
+            description[i].innerHTML = eventsArray[i]['description']
+        }
+}
+
+function switchDay(){
+    
+    applyDataModelToDOM()
+}
+
+
+//data model
+var entries = {
+    currentDaySelected: 0,
+    sunday: [{day: "sunday", time: "5:00", description: "asd"}, {day: "sunday", time: "4:00", description: "asd"}],
+    monday: [{day: "monday", time: "6:00", description: "asd"}],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
+    saturday: []
+}
