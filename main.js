@@ -8,12 +8,11 @@ week.addEventListener('click', changeDay)
 function changeDay(event){
     if(event.target.className !== "week"){
         scheduledDay.innerHTML = "Scheduled Events for " + event.target.textContent;
+        var dayToLowerCase = event.target.innerHTML.toLowerCase()
+
+        switchDay(dayToLowerCase)
+        applyDataModelToDOM(dayToLowerCase)
     }
-
-    var dayToLowerCase = event.target.innerHTML.toLowerCase()
-
-    console.log(dayToLowerCase)
-    applyDataModelToDOM(dayToLowerCase)
 }
 
 var button = document.querySelector("button");
@@ -48,7 +47,6 @@ var timeOption = document.querySelector("#time")
 
 function myFormData(){
   var daySelected = dayOption.value;
-  console.log(day)
   var timeSelected = timeOption.selectedOptions[0].innerHTML;
   var desc = submitText.value;
     if(desc === "" || day === 0 || time === 0){
@@ -58,6 +56,7 @@ function myFormData(){
     
     addEntryToDataModel(daySelected, timeSelected, desc)
     applyDataModelToDOM(daySelected)
+    
 }
 
 
@@ -90,30 +89,30 @@ function addEntryToDataModel(dayEntry, timeEntry, descEntry){
         time: timeEntry,
         description: descEntry
     }
-    console.log(entry)
-    console.log(dayEntry)
     entries[dayEntry].push(entry)
     
 }
 
 function applyDataModelToDOM(day){
         var eventsArray = entries[day];
-        console.log(eventsArray)
         for(var i = 0; i < eventsArray.length; i++){
             time[i].innerHTML = eventsArray[i]['day'] + " " + eventsArray[i]['time']
             description[i].innerHTML = eventsArray[i]['description']
         }
 }
 
-function switchDay(){
-    
-    applyDataModelToDOM()
+function switchDay(day){
+    entries['currentDaySelected'] = day;
+    for(var i = 0; i < time.length; i++){
+        time[i].innerHTML = "";
+        description[i].innerHTML = "";
+    }
 }
 
 
 //data model
 var entries = {
-    currentDaySelected: 0,
+    currentDaySelected: "",
     sunday: [{day: "sunday", time: "5:00", description: "asd"}, {day: "sunday", time: "4:00", description: "asd"}],
     monday: [{day: "monday", time: "6:00", description: "asd"}],
     tuesday: [],
