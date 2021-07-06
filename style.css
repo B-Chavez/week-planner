@@ -1,4 +1,4 @@
-header{
+header, .title{
     height: 100px;
     display: flex;
     justify-content: center;
@@ -63,3 +63,38 @@ table {
     margin: 20px 0;
 }
 
+.button:hover{
+    background-color: rgb(105, 179, 179);
+    cursor: pointer;
+}
+
+.modal{
+    position: fixed;
+    height: 500px;
+    width: 500px;
+    background: aquamarine;
+    top: 25%;
+    left: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.containerEntry{
+    display: flex;
+    justify-content: space-evenly;
+}
+#entry{
+    margin: 10px;
+}
+
+.transparentBG{
+    height: 100%;
+    width: 100%;
+    background-color: gray;
+    position: fixed;
+    opacity: .5;
+}
+
+.hidden{
+    display: none;
+}
